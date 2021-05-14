@@ -1,0 +1,14 @@
+#form-cadastro {
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+}
+
+button {
+  width: 20rem;
+}
+
+#div-btn-cadastro {
+  display: flex;
+  justify-content: center;
+}

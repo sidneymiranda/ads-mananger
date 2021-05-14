@@ -4,10 +4,15 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +34,11 @@ public class Announcement implements Serializable {
 	private Long id;
 
 	private String nomeDoAnuncio;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente_id")
 	private Client cliente;
+
 	private LocalDate dataDeInicio;
 	private LocalDate dataDeTermino;
 	private Double investimentoPorDia;
