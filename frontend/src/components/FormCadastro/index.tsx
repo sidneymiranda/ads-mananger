@@ -8,10 +8,10 @@ import './style.css';
 const FormCadastro: React.FC = () => {
   const [announcement, setAnnouncement] = useState<Announcement>({
     nomeDoAnuncio: '',
-    cliente: { id: 0, nome: '' },
+    cliente: { nome: '' },
     dataDeInicio: '',
     dataDeTermino: '',
-    InvestimentoPorDia: 0.0,
+    investimentoPorDia: 0.0,
   });
 
   function updateAnnouncement(e: ChangeEvent<HTMLInputElement>) {
@@ -26,7 +26,7 @@ const FormCadastro: React.FC = () => {
 
     const response = await api.post('/announcements', announcement);
 
-    console.log(response);
+    console.log(response.data);
   }
 
   return (
@@ -37,6 +37,7 @@ const FormCadastro: React.FC = () => {
           type="text"
           name="nomeDoAnuncio"
           placeholder="Insira o nome do anúncio"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => updateAnnouncement(e)}
         />
       </Form.Group>
 
@@ -76,7 +77,7 @@ const FormCadastro: React.FC = () => {
           <Form.Label>Valor de investimento</Form.Label>
           <Form.Control
             type="number"
-            name="InvestimentoPorDia"
+            name="investimentoPorDia"
             placeholder="R$"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               updateAnnouncement(e)

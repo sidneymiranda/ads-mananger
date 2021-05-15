@@ -5,5 +5,5 @@ export type Announcement = {
   cliente: Client;
   dataDeInicio: string;
   dataDeTermino: string;
-  InvestimentoPorDia: number;
+  investimentoPorDia: number;
 };

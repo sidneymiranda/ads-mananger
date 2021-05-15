@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.capgemini.desafio.adsmanager.dto.AnnouncementDTO;
-import br.com.capgemini.desafio.adsmanager.dto.MessageResponseDTO;
+import br.com.capgemini.desafio.adsmanager.dto.PostAdDTO;
+import br.com.capgemini.desafio.adsmanager.entities.Announcement;
+import br.com.capgemini.desafio.adsmanager.mapper.IAnnouncementMapper;
 import br.com.capgemini.desafio.adsmanager.service.AnnouncementService;
 import lombok.AllArgsConstructor;
 
@@ -19,10 +20,13 @@ import lombok.AllArgsConstructor;
 public class AnnouncementResource {
 	
 	private AnnouncementService service;
+	private static final IAnnouncementMapper mapper = IAnnouncementMapper.INSTANCE;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public MessageResponseDTO createAds(@RequestBody AnnouncementDTO adsDTO) {
-		return service.createAds(adsDTO);
+	public PostAdDTO createAds(@RequestBody PostAdDTO adDTO) {
+		Announcement ad = mapper.toModel(adDTO);
+		Announcement adSaved = service.createAds(ad);
+		return mapper.toDTO(adSaved);
 	}
 }

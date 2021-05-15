@@ -11,13 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnnouncementDTO implements Serializable {
+public class PostAdDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
 	private String nomeDoAnuncio;
-	private ClientDTO cliente;
+	private PostClientDTO cliente;
 	private String dataDeInicio;
 	private String dataDeTermino;
 	private Double investimentoPorDia;
