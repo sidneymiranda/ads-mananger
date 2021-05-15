@@ -7,10 +7,10 @@ const Cadastro: React.FC = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="mt-3 text-center">Consulta de anúncios</h1>
+    <>
+      <h1 className="mt-3 text-center">Relatório de projeções</h1>
       <FormConsulta />
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Row, Table } from 'react-bootstrap';
+import { MdAttachMoney } from 'react-icons/md';
+import { FaShareAlt } from 'react-icons/fa';
+import { GiClick } from 'react-icons/gi';
+import { BiCheckDouble } from 'react-icons/bi';
 import api from '../../services/api';
 
 interface IAnnouncement {
@@ -20,7 +24,7 @@ const FormConsulta: React.FC = () => {
 
   return (
     <>
-      <Form className="mt-5">
+      <Form className="container mt-5">
         <Row>
           <Col xs={6}>
             <Form.Group as={Row}>
@@ -39,7 +43,7 @@ const FormConsulta: React.FC = () => {
             </Form.Group>
             <Form.Text className="text-muted">Busca por período</Form.Text>
           </Col>
-          <Col xs={2}>
+          <Col xs={1}>
             <Form.Group>
               <Button variant="success" type="button" onClick={search}>
                 Consultar relatório
@@ -49,14 +53,28 @@ const FormConsulta: React.FC = () => {
         </Row>
       </Form>
 
-      <Table striped bordered hover className="text-center mt-5" size="sm">
+      <Table
+        responsive
+        striped
+        bordered
+        hover
+        className="text-center mt-5"
+        size="md"
+      >
         <thead>
           <tr>
-            <th>#</th>
-            <th>Valor total investido</th>
-            <th>Quantidade máxima de visualizações</th>
-            <th>Quantidade máxima de cliques</th>
-            <th>quantidade máxima de compartilhamentos</th>
+            <th>
+              <MdAttachMoney /> Investimento
+            </th>
+            <th>
+              <BiCheckDouble /> Visualizações
+            </th>
+            <th>
+              <GiClick /> Cliques
+            </th>
+            <th>
+              <FaShareAlt /> Compartilhamentos
+            </th>
           </tr>
         </thead>
         <tbody>

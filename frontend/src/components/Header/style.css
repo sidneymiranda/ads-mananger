@@ -1,3 +1,6 @@
-#home {
+#nav {
+  align-items: baseline;
+}
+#nav span {
   margin-left: 2rem;
 }

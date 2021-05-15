@@ -6,10 +6,8 @@ import './style.css';
 
 const Header: React.FC = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand href="" id="home">
-        ADS Mananger
-      </Navbar.Brand>
+    <Navbar bg="dark" variant="dark" expand="lg" id="nav">
+      <Navbar.Brand href="">ADS Mananger</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
