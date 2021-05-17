@@ -19,9 +19,10 @@ class AdsManagerApplicationTests {
 	
 	private static final IClientMapper mapper = IClientMapper.INSTANCE;
 	
-//	@Test
+	@Test
 	void quandoCadastrarUmAnuncio_EntaoOk() {
 		Client client = Client.builder().name("Sidney Miranda").build();
+		
 		Announcement ads = Announcement.builder()
 										.adName("Academia Técnica Capgemini")
 										.client(client)
