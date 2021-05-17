@@ -29,7 +29,7 @@ $ mvn spring-boot:run
 
 ## :heavy_check_mark: License 
 
-This project is under the MIT license. See the [LICENSE](https://github.com/sidneymiranda/project-proffy/blob/master/LICENSE.txt) file for more details.
+This project is under the MIT license. See the [LICENSE](https://github.com/sidneymiranda/ads-mananger/blob/main/LICENSE) file for more details.
 
 ---
-Made with :heart: by [Sidney Miranda](https://www.linkedin.com/in/sidney-miranda/)
+Desenvolvido por [Sidney Miranda](https://www.linkedin.com/in/sidney-miranda/)
