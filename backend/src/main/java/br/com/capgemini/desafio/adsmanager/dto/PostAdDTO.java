@@ -1,6 +1,7 @@
 package br.com.capgemini.desafio.adsmanager.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,10 +16,10 @@ public class PostAdDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String nomeDoAnuncio;
-	private PostClientDTO cliente;
-	private String dataDeInicio;
-	private String dataDeTermino;
-	private Double investimentoPorDia;
+	private String adName;
+	private PostClientDTO client;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private Double investedTotal;
 
 }

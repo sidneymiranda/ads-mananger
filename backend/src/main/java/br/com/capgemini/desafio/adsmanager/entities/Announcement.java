@@ -32,14 +32,14 @@ public class Announcement implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nomeDoAnuncio;
+	private String adName;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinColumn(name = "cliente_id")
-	private Client cliente;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "client_id")
+	private Client client;
 
-	private LocalDate dataDeInicio;
-	private LocalDate dataDeTermino;
-	private Double investimentoPorDia;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private Double investedTotal;
 
 }

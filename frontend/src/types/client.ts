@@ -1,3 +1,3 @@
 export type Client = {
-  nome: string;
+  name: string;
 };

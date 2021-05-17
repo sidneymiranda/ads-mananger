@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import br.com.capgemini.desafio.adsmanager.dto.GetReportDTO;
 import br.com.capgemini.desafio.adsmanager.dto.PostAdDTO;
 import br.com.capgemini.desafio.adsmanager.entities.Announcement;
 
@@ -11,12 +12,16 @@ import br.com.capgemini.desafio.adsmanager.entities.Announcement;
 public interface IAnnouncementMapper {
 
 	IAnnouncementMapper INSTANCE = Mappers.getMapper(IAnnouncementMapper.class);
-	
-	@Mapping(source = "dataDeInicio", target = "dataDeInicio", dateFormat = "yyyy-MM-dd")
-	@Mapping(source = "dataDeTermino", target = "dataDeTermino", dateFormat = "yyyy-MM-dd")
 
-	Announcement toModel(PostAdDTO dto);
+	@Mapping(target = "startDate", dateFormat = "yyyy-MM-dd")
+	@Mapping(target = "endDate", dateFormat = "yyyy-MM-dd")
 
-	PostAdDTO toDTO(Announcement entity);
+	@Mapping(target = "id", ignore = true)
+	Announcement toAdModel(PostAdDTO dto);
+//	Client toClientModel(PostClientDTO clientDto);
+
+	PostAdDTO toAdDTO(Announcement entity);
+
+	GetReportDTO toGetReportDTO(Announcement entity);
 
 }

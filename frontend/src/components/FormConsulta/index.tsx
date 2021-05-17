@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Col, Form, Row, Table } from 'react-bootstrap';
 import { MdAttachMoney } from 'react-icons/md';
 import { FaShareAlt } from 'react-icons/fa';
@@ -8,7 +8,7 @@ import api from '../../services/api';
 
 interface IAnnouncement {
   id: number;
-  value: number;
+  investedTotal: number;
   views: number;
   clicks: number;
   shares: number;
@@ -17,10 +17,14 @@ interface IAnnouncement {
 const FormConsulta: React.FC = () => {
   const [announcements, setAnnouncements] = useState<IAnnouncement[]>([]);
 
-  async function search() {
-    const results = await api.get(`/api/v1/announcements/`);
+  async function load() {
+    const results = await api.get(`/reports`);
     setAnnouncements(results.data);
   }
+
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
     <>
@@ -45,7 +49,7 @@ const FormConsulta: React.FC = () => {
           </Col>
           <Col xs={1}>
             <Form.Group>
-              <Button variant="success" type="button" onClick={search}>
+              <Button variant="success" type="button">
                 Consultar relatório
               </Button>
             </Form.Group>
@@ -63,6 +67,7 @@ const FormConsulta: React.FC = () => {
       >
         <thead>
           <tr>
+            <th>#</th>
             <th>
               <MdAttachMoney /> Investimento
             </th>
@@ -78,13 +83,13 @@ const FormConsulta: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {announcements.map((ads) => (
-            <tr key={ads.id}>
-              <td>{ads.id}</td>
-              <td>{ads.value}</td>
-              <td>{ads.views}</td>
-              <td>{ads.clicks}</td>
-              <td>{ads.shares}</td>
+          {announcements.map((ad) => (
+            <tr key={ad.id}>
+              <td>{ad.id}</td>
+              <td>{ad.investedTotal}</td>
+              <td>{ad.views}</td>
+              <td>{ad.clicks}</td>
+              <td>{ad.shares}</td>
             </tr>
           ))}
         </tbody>

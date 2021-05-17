@@ -11,9 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostClientDTO implements Serializable{
+public class GetReportDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
-	private String name;
+	
+	private Long id;
+	private Double investedTotal;
+	private Integer views;
+	private Integer clicks;
+	private Integer shares;
 }
