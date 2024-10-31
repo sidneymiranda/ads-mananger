@@ -1,0 +1,50 @@
+# .github/workflows/auto-merge-dependabot.yml
+name: Auto Approve and Merge Dependabot PRs
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+      - develop
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  approve_and_merge:
+    name: Approve and Auto-Merge Dependabot PRs
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'  # Somente para PRs do Dependabot
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Approve PR
+      if: success()
+      run: gh pr review ${{ github.event.pull_request.number }} --approve
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Auto-merge Dependabot PR
+      if: success()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const pull_request = context.payload.pull_request;
+          if (pull_request.user.login === "dependabot[bot]" && pull_request.labels.some(label => label.name === "dependencies")) {
+            await github.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pull_request.number,
+              merge_method: "squash"  # Pode ser "merge", "squash" ou "rebase"
+            });
+            // Deletar a branch após o merge
+            await github.git.deleteRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `heads/${pull_request.head.ref}`
+            });
+          }
